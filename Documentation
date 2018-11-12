@@ -1,0 +1,46 @@
+1. Jenkins is a Java application, so the first step is to install Java. Run the following command to install the OpenJDK 8 package
+yum install java-1.8.0-openjdk-devel
+
+2. The next step is to enable the Jenkins repository. To do that, import the GPG key using the following curl command:
+curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo
+
+And add the repository to your system with:
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+3. Once the repository is enabled, install the latest stable version of Jenkins by typing:
+yum install jenkins
+
+4. Start the jenkins service
+systemctl start jenkins
+
+5. Enable the jenkins service
+systemctl enable jenkins
+
+6. Verify the status of the jenkins service
+systemctl status jenkins
+
+7. Make sure the port 8080 is forwarded in the vagrant file if not done already enable the forwarding and run 
+vagrant provision
+
+8. At this point the you can access the jenkins in the browser as 
+192.168.1.7:8080
+
+9. Jenkins has the password at the following location , you can read the password on the server and enter on the installation to proceed further
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Enter the password in the browser to continue with the installation further.
+
+10. Select the install the suggested plugins
+plugins installation should start at this point
+
+11. Next enter your username and password this would be used by default to login to the jenkins 
+
+12. You need to click on continue as admin as it creates the account otherwise it will error out
+
+13. Input the jenkins url on which the jenkins will load in our case its
+http://192.168.1.7:8080/
+
+14. If somehow your user was not created than admin account created by default and password would be the same as created in the initialAdminPassword file
+you can use that to login to the jenkins
+
+15. At this point you should be able to login to the jenkins server with the admin user and password.
