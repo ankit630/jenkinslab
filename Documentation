@@ -113,6 +113,31 @@ uname -a
 
 43. And show the output in the console output
 
+44. Click on new job and select the freestyle project and put the name as game-of-life
+
+45. Install the maven on the slave node
+
+46. Clickon the git scm and put the following url
+https://github.com/wakaleo/game-of-life
+
+47. restrict it to run on the jenkins slave
+mavenslave
+
+48. go to build step and put
+#!/bin/bash
+
+#Build the project
+mvn install
+
+49. Start the project manually
+# Start the application
+cd gameoflife-web
+mvn jetty:run
+
+50. # Running tests
+cd gameoflife-acceptance-tests
+mvn clean verify
+
 
 
 
