@@ -44,3 +44,90 @@ http://192.168.1.7:8080/
 you can use that to login to the jenkins
 
 15. At this point you should be able to login to the jenkins server with the admin user and password.
+
+16. Go the /etc/passwd file of the jenkins master and change the shell for the jenkins user to /bin/bash .
+
+17. Than switch the user to the jenkins user and run ssh-keygen 
+
+18. Copy the  pub key of the jenkins user  and copy this to the root user of the slave node.
+
+19. Than try to ssh the slave node from the jenkins user on the jenkins master and check if you are able to ssh to the jenkins slave.
+
+20. Once done copy the /var/lib/jenkins/.ssh/id_rsa secret key to the jenkins slave node configuration.
+
+21. Go manage jenkins and click on manage nodes and click on new node and click add the permanent node and give the node name.
+
+22. Provide the root directory for the slave like /root and label name like mavenslave. provide the hostip  address and click  on add forcredentials
+
+23. Select ssh username and key and paste in your secret key to access the server, this will be the jenkins master jenkins user key only.
+
+24. And click on save to save the configuration
+
+25. Install the java8 on the jenkins slave as well.
+yum install java
+
+26. Java is required by the slave agent otherwise the agent will not come up and running.
+
+27. click maven slave agent and click launch agent to bring up the agent back up and running
+
+28.There would be log generated showing the agent is successfully connected and online
+
+29. If you go the nodes both will be up and running.
+
+30. Click on the managejenkins and users
+
+31 Click on create user
+
+32. Enter your credentials and click on create user and your user is created.
+
+33. AT this point we are going to start by creating the job to execute a shell script
+
+34. We will be creating the folder to easily differentiate between the jobs. So lets say you are working in ecommerce company you start by creating a catalog  folder for all catalog jobs
+
+35. Click new jobs , select folder option  put the name catalog and click ok.
+
+36. Provide thhe name as catalog and click save.
+
+37 select the catalog folder and click on create new job.
+
+38. We will start by executing a shell script in the job to see how we can execute shell commands so put the name as
+determining-osversion-and-kernelversion and select freestyle project and click ok
+
+39. select discard build to show how many builds to keep and how old build to keep
+Days to keep builds:- 7 
+Max bild  to keep:-15
+
+40. Click on add build step and select execute shell
+
+#!/bin/bash
+
+echo "####Detection of OS version#####"
+cat /etc/redhat-release
+
+echo "###Detecction of kernel version"
+uname -a
+
+41. Thats it and click save
+
+42. Click on buildnow and it will run the job
+
+43. And show the output in the console output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
